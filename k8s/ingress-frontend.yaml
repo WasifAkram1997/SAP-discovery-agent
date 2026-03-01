@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sap-ingress-frontend
+  namespace: sap-discovery
+spec:
+  ingressClassName: nginx
+  rules:
+    - http:
+        paths:
+          # Frontend routes - everything else goes to frontend
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend-service
+                port:
+                  number: 80

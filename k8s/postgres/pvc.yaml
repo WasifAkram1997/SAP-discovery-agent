@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-pvc
+  namespace: sap-discovery
+  labels:
+    app: postgres
+spec:
+  accessModes:
+    - ReadWriteOnce       # Must match the PV's accessModes
+
+  storageClassName: standard  # Must match the PV's storageClassName
+
+  resources:
+    requests:
+      storage: 1Gi        # Must match or be less than PV's capacity

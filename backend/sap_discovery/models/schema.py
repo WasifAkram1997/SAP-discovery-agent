@@ -24,6 +24,10 @@ class SAPProcessMapping(SAPProcessMappingLLM):
     """Final output — extends LLM mapping with real extracted references."""
     references: List[Reference] = Field(default_factory=list, description="References extracted from tool results")
 
+#     List[SAPProcessMapping], filename
+
+
+
 
 class DimensionScore(BaseModel):
     module_coverage: float = 0.0      # SAP module identified?

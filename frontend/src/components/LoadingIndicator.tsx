@@ -26,7 +26,7 @@ export const LoadingIndicator: React.FC = () => {
             <span></span>
           </div>
           <span className="text-gray-600 text-sm">
-            {showHint ? 'Processing multiple business processes...' : 'Thinking...'}
+            {showHint ? 'Still thinking, this may take a while...' : 'Thinking...'}
           </span>
         </div>
         {showHint && (

@@ -24,6 +24,8 @@ class SessionMiddleware(BaseHTTPMiddleware):
         Returns:
             Response with session cookie set if needed
         """
+        if request.url.path == "/health":
+            return await call_next(request)
         session_id = request.cookies.get(COOKIE_NAME)
 
         if session_id:

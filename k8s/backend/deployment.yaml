@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: sap-discovery
+  labels:
+    app: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: sap-backend:v1.0
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8001
+
+          # Inject secrets as environment variables
+          env:
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: sap-secrets
+                  key: OPENAI_API_KEY
+
+            - name: SERPER_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: sap-secrets
+                  key: SERPER_API_KEY
+
+            - name: LANGSMITH_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: sap-secrets
+                  key: LANGSMITH_API_KEY
+
+          # Inject configmap as environment variables
+          envFrom:
+            - configMapRef:
+                name: sap-config
+
+          # Resource limits
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "512Mi"
+            limits:
+              cpu: "1000m"
+              memory: "1Gi"
+
+          # Readiness probe - uses /health endpoint
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8001
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            failureThreshold: 3
+
+          # Liveness probe - uses /health endpoint
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8001
+            initialDelaySeconds: 40
+            periodSeconds: 15
+            failureThreshold: 3

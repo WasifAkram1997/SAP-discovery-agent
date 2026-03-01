@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-service
+  namespace: sap-discovery
+  labels:
+    app: postgres
+spec:
+  type: ClusterIP       # Internal only - never exposed outside cluster
+  selector:
+    app: postgres
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432

@@ -87,7 +87,10 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=[
+        "http://localhost:3000",  # Keep for local development
+        "*"  # Allow all origins for K8s ingress (safe with same-origin architecture)
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
