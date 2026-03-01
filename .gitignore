@@ -1,0 +1,105 @@
+# Environment variables (NEVER COMMIT SECRETS!)
+.env
+.env.local
+.env.*.local
+*.env
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+venv/
+ENV/
+env/
+
+# Logs
+*.log
+logs/*
+!logs/README.md
+!logs/.gitignore
+*.log.*
+
+# User uploads
+uploads/*
+!uploads/README.md
+!uploads/.gitignore
+
+# Outputs (generated files)
+outputs/*
+!outputs/README.md
+!outputs/.gitkeep
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Node (for frontend)
+node_modules/
+frontend/dist/
+frontend/build/
+
+# Testing
+.coverage
+.pytest_cache/
+htmlcov/
+
+# Docker
+.dockerignore
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Claude
+.claude/
+
+# Data files (Excel inputs)
+data/input/*.xlsx
+data/input/*.xls
+
+# Virtual environment (your venv folder)
+venv/
+.venv/
+
+# Egg info
+sap_discovery.egg-info/
+
+# Frontend build
+frontend/.next/
+
+logs/*
+!logs/.gitkeep
+
+data/input/*.xlsx
+data/input/*.xls
